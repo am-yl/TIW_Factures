@@ -17,6 +17,9 @@ if (empty($_GET)) {
         case 'client' :
             include 'controllers/clientController.php';
         break;
+        case 'produits' : 
+            print_view('404');
+            break;
         case 'factures' : 
             print_view('404');
             break;
