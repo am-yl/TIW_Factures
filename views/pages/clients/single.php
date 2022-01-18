@@ -8,7 +8,7 @@
             </div>
             <input type="hidden" name="cid" value="<?= $client['id'] ?>">
             <button type="submit" class="btn btn-success">Enregistrer</button>
-            <a href="/?data=clients&action=" class="btn btn-dark">Retourner à la liste des clients</a>
+            <a href="/?data=client&action=list" class="btn btn-dark">Retourner à la liste des clients</a>
         </form>
     </div>
 </div>

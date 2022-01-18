@@ -47,3 +47,26 @@ function edit_client (int $id, string $name) {
         ':name' => $name,
     ]);
 }
+
+function create_produit (string $name, float $tva, float $prix, string $unite) {
+
+    //securite
+    $allowed_tva = ['5.5', '20'];
+    if(!in_array($tva,$allowed_tva)) {
+        $tva = '20';
+    }
+
+    $allowed_unite = ['unité', 'h', 'm²'];
+    if(!in_array($unite,$allowed_unite)) {
+        $unite = 'unité';
+    }
+
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('INSERT INTO produits VALUES (:name, :tva, :prix, :unite)');
+    $request->execute([
+        ':name' => $name,
+        ':tva' => $tva,
+        ':prix' => $prix,
+        ':unite' => $unite
+    ]);
+}

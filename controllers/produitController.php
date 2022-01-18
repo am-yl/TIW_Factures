@@ -1,10 +1,9 @@
 <?php
-
 switch ($_GET['action']) {
     case 'add':
-        if (!empty($_POST['nom-client'])) {
-            create_client($_POST['nom-client']);
-            header('Location: /?data=client&action=list', true, 301);               
+        if (!empty($_POST['nom-produit'])) {
+            create_produit($_POST['nom-produit']);
+            header('Location: /?data=produit&action=list', true, 301);               
         } else {
             die('Le nom du client est obligatoire !');
         }
@@ -13,7 +12,7 @@ switch ($_GET['action']) {
     case 'delete':
         if (!empty($_GET['cid'])) {
             delete_client($_GET['cid']);
-            header('Location: /?data=client&action=list', true, 301); 
+            header('Location: /?data=clients&action=', true, 301); 
         } else {
             die('L\'identifiant client est obligatoire !');
         }
@@ -23,7 +22,7 @@ switch ($_GET['action']) {
         if (!empty($_GET['cid'])) {
             $client = get_client($_GET['cid']);
             if (!empty($client)) {
-                print_view('clients/single', ['client' => $client]);
+                print_view('produits/single', ['client' => $client]);
             die;
             }
         }
@@ -32,7 +31,7 @@ switch ($_GET['action']) {
 
     case 'list':
         $clients=get_all_clients();
-        print_view('clients/list', ['clients'=>$clients]);
+        print_view('produits/list', ['clients'=>$clients]);
         break;
 
     case 'edit':

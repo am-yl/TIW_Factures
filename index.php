@@ -11,18 +11,18 @@ if (empty($_GET)) {
     }
 
     switch ($_GET['data']) {
-        case 'clients' :
-            print_view('clients');
-            break;
         case 'client' :
             include 'controllers/clientController.php';
         break;
-        case 'produits' : 
+
+        case 'produit' : 
+            include 'controllers/produitController.php';
+            break;
+
+        case 'facture' : 
             print_view('404');
             break;
-        case 'factures' : 
-            print_view('404');
-            break;
+
         default :
             print_view('404');
     }
