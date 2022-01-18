@@ -82,7 +82,7 @@ function get_all_produits () {
 }
 
 function get_produit (int $id) {
-    // récupérer tous les produits en bdd
+    
     $bdd = bdd_connect();
     $request = $bdd->prepare('SELECT * FROM produits WHERE id = :id');
     $request->execute([
@@ -136,4 +136,85 @@ function get_factures(int $cid) {
         ':cid' => $cid
     ]);
     return $request->fetchAll();
+}
+
+function get_facture(int $id) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM factures WHERE id = :id');
+    $request->execute([
+        ':id' => $id
+    ]);
+    return $request->fetch();
+}
+
+function delete_facture(int $id) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('DELETE FROM factures WHERE id = :id');
+    $request->execute([
+        ':id' => $id
+    ]);
+}
+
+//facture_produit
+
+function link_pdt_fac(int $fid, int $pid, int $pnb) {
+
+    if($pnb <= 0) {
+        $pnb = 1;
+    }
+
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('INSERT INTO facture_produit (id_facture, id_produit, quantite) VALUES (:fid, :pid, :pnb)');
+    $request->execute([
+        ':fid' => $fid,
+        ':pid' => $pid,
+        ':pnb' => $pnb
+    ]);
+}
+
+function get_fac_prod(int $fid) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM facture_produit WHERE id_facture = :fid');
+    $request->execute([
+        ':fid' => $fid
+    ]);
+    return $request->fetchAll();    
+}
+
+function delete_fac_prod(int $id) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('DELETE FROM facture_produit WHERE id = :id');
+    $request->execute([
+        ':id' => $id
+    ]);
+}
+
+function is_prod(int $fid,int $pid) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM facture_produit WHERE id_produit = :pid AND id_facture=:fid');
+    $request->execute([
+        ':pid' => $pid,
+        ':fid' => $fid
+    ]);
+    return $request->fetch();
+}
+
+function add_quantite(int $fid,int $pid, int $q) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('UPDATE facture_produit SET quantite = quantite + :q WHERE id_produit = :pid AND id_facture = :fid');
+    $request->execute([
+        ':q' => $q,
+        ':pid' => $pid,
+        ':fid' => $fid
+    ]);
+}
+
+function is_q_pos(int $fid,int $pid, int $q) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM facture_produit WHERE quantite > 0 AND id_produit = :pid AND id_facture=:fid');
+    $request->execute([
+        ':pid' => $pid,
+        ':fid' => $fid
+    ]);
+    return $request->fetch();
 }

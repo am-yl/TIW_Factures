@@ -19,7 +19,6 @@
             </thead>
             <tbody>
                 <?php
-                    $clients = get_all_clients();
                     foreach($clients as $client) :
                 ?>
                 <tr>

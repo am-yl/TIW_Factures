@@ -26,8 +26,8 @@
                         <?= $facture['name']?>
                     </td>
                     <td>
-                        <a href="/?data=facture&action=view&pid=<?= $facture['id'] ?>" class="btn btn-primary">voir</a>
-                        <a href="/?data=facture&action=delete&pid=<?= $facture['id'] ?>" class="btn btn-danger">supprimer</a>
+                        <a href="/?data=facture&action=view&fid=<?= $facture['id'] ?>" class="btn btn-primary">voir</a>
+                        <a href="/?data=facture&action=delete&fid=<?= $facture['id'] ?>&cid=<?= $client['id'] ?>" class="btn btn-danger">supprimer</a>
                     </td>
                 </tr>
                 <?php
