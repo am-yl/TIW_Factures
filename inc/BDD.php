@@ -48,6 +48,8 @@ function edit_client (int $id, string $name) {
     ]);
 }
 
+// PRODUITS
+
 function create_produit (string $name, float $tva, float $prix, string $unite) {
 
     //securite
@@ -58,12 +60,50 @@ function create_produit (string $name, float $tva, float $prix, string $unite) {
 
     $allowed_unite = ['unité', 'h', 'm²'];
     if(!in_array($unite,$allowed_unite)) {
-        $unite = 'unité';
+        $unite = 'unite';
     }
 
     $bdd = bdd_connect();
-    $request = $bdd->prepare('INSERT INTO produits VALUES (:name, :tva, :prix, :unite)');
+    $request = $bdd->prepare('INSERT INTO produits (name, tva, prix, units) VALUES (:name, :tva, :prix, :unite)');
     $request->execute([
+        ':name' => $name,
+        ':tva' => $tva,
+        ':prix' => $prix,
+        ':unite' => $unite
+    ]);
+}
+
+function get_all_produits () {
+    // récupérer tous les produits en bdd
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM produits');
+    $request->execute();
+    return $request->fetchAll();
+}
+
+function get_produit (int $id) {
+    // récupérer tous les produits en bdd
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM produits WHERE id = :id');
+    $request->execute([
+        ':id' => $id
+    ]);
+    return $request->fetch();
+}
+
+function delete_produit (int $id) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('DELETE FROM produits WHERE id = :id');
+    $request->execute([
+        ':id' => $id
+    ]);
+}
+
+function edit_produit (int $id, string $name, float $tva, float $prix, string $unite) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('UPDATE produits SET name = :name, tva = :tva, prix = :prix, units = :unite WHERE id = :id');
+    $request->execute([
+        ':id'  => $id,
         ':name' => $name,
         ':tva' => $tva,
         ':prix' => $prix,

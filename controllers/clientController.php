@@ -19,6 +19,11 @@ switch ($_GET['action']) {
         }
         break;
 
+    case 'list':
+        $clients=get_all_clients();
+        print_view('clients/list', ['clients'=>$clients]);
+        break;
+
     case 'view':
         if (!empty($_GET['cid'])) {
             $client = get_client($_GET['cid']);
@@ -30,13 +35,8 @@ switch ($_GET['action']) {
         print_view('404');
         break;
 
-    case 'list':
-        $clients=get_all_clients();
-        print_view('clients/list', ['clients'=>$clients]);
-        break;
-
     case 'edit':
-        if (!empty($_POST['client_name']) && !empty($_POST['client_name'])) {
+        if (!empty($_POST['cid']) && !empty($_POST['client_name'])) {
             edit_client($_POST['cid'],$_POST['client_name']);
             header('Location: /?data=client&action=view&cid='.$_POST['cid'], true, 301);
         } else {
