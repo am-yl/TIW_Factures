@@ -147,6 +147,15 @@ function get_facture(int $id) {
     return $request->fetch();
 }
 
+function edit_facture(int $id, string $name) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('UPDATE factures SET name = :name WHERE id = :id');
+    $request->execute([
+        ':id'  => $id,
+        ':name' => $name
+    ]);
+}
+
 function delete_facture(int $id) {
     $bdd = bdd_connect();
     $request = $bdd->prepare('DELETE FROM factures WHERE id = :id');
@@ -209,12 +218,8 @@ function add_quantite(int $fid,int $pid, int $q) {
     ]);
 }
 
-function is_q_pos(int $fid,int $pid, int $q) {
+function del_q_neg() {
     $bdd = bdd_connect();
-    $request = $bdd->prepare('SELECT * FROM facture_produit WHERE quantite > 0 AND id_produit = :pid AND id_facture=:fid');
-    $request->execute([
-        ':pid' => $pid,
-        ':fid' => $fid
-    ]);
-    return $request->fetch();
+    $request = $bdd->prepare('DELETE FROM facture_produit WHERE quantite <= 0');
+    $request->execute();
 }

@@ -31,7 +31,7 @@
             </div>
 
             <button type="submit" class="btn btn-success">Enregistrer</button>
-            <a href="/?data=produit&action=list" class="btn btn-dark">Retourner à la liste des clients</a>
+            <a href="/?data=produit&action=list" class="btn btn-dark">Retourner à la liste des produits</a>
             
         </form>
     </div>

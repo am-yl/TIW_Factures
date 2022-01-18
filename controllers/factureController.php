@@ -41,11 +41,22 @@ switch ($_GET['action']) {
         print_view('404');
         break;
 
+        case 'edit':
+            if (!empty($_POST['fid']) && !empty($_POST['nom-facture'])) {
+                edit_facture($_POST['fid'],$_POST['nom-facture']);
+                header('Location: /?data=facture&action=view&fid='.$_POST['fid'], true, 301);
+            } else {
+                die('L\'identifiant factire est obligatoire !');
+            }
+            break;
+
+
     case 'add_pdt':
         if (!empty($_POST['pid']) && !empty($_POST['fid']) && !empty($_POST['q-produit'])) {
             $set=is_prod($_POST['fid'], $_POST['pid']);
             if(!empty($set)) {
                 add_quantite($_POST['fid'],$_POST['pid'],$_POST['q-produit']);
+                del_q_neg();
             } else {
                 link_pdt_fac($_POST['fid'], $_POST['pid'], $_POST['q-produit']);
             }

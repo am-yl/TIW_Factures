@@ -2,6 +2,16 @@
     <div class="row">
         <h1>Gestion de la facture : <span class="text-decoration-underline"><?=$facture['name'] ?></span></h1>
 
+        <form method="POST" class="pb-4" action="/?data=facture&action=edit">
+            <div class="form-groupe pb-2">
+                <label class="form-label" for="nom-facture">Modifier le nom de la facture :</label>
+                <input type="text" class="form-control"  required name="nom-facture" id="nom-facture" value="<?=$facture['name'] ?>">
+            </div>
+            <input type="hidden" name="fid" value="<?= $facture['id'] ?>">
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <a href="/?data=facture&action=list" class="btn btn-dark">Retourner à la liste des factures</a>
+        </form>
+
         <form action="?data=facture&action=add_pdt" method="POST" class="col-sm-8 col-md-6 align-self-center pb-5">
             <h2>Ajouter un produit</h2>
             <div class="form-group py-2">
