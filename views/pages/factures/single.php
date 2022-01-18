@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h1>Gestion de la facture : <span class="text-decoration-underline"><?=$facture['name'] ?></span></h1>
+        <h1>Gestion de la facture : <span class="fw-bold"><?=$facture['name'] ?></span></h1>
 
         <form method="POST" class="pb-4" action="/?data=facture&action=edit">
             <div class="form-groupe pb-2">
@@ -79,6 +79,6 @@
                 ?>
             </tbody>
         </table>
-        <h2>TOTAL: <?= $res?>€</h2>
+        <h2 class="fw-bold">TOTAL: <?= $res?>€</h2>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <form method="POST" class="pb-4" action="/?data=client&action=edit">
-            <h1>Ici vous pouvez gérer la page de <span class="text-decoration-underline"><?=$client['name'] ?></span></h1>
+            <h1>Ici vous pouvez gérer la page de <span class="fw-bold"><?=$client['name'] ?></span></h1>
             <div class="form-groupe pb-2">
                 <label class="form-label" for="client-name">Modifier le nom du client :</label>
                 <input type="text" class="form-control"  required name="client_name" id="client_name" value="<?=$client['name'] ?>">

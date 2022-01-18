@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <form method="POST" action="/?data=produit&action=edit">
-            <h1>Ici vous pouvez gérer la page de <span class="text-decoration-underline"><?=$produit['name'] ?></span></h1>
+            <h1>Gestion du <span class="fw-bold"><?=$produit['name'] ?></span></h1>
             <div class="form-groupe pb-2">
                 <label class="form-label" for="nom-produit">Modifier le nom du produit :</label>
                 <input type="text" class="form-control"  required name="produit_name" id="produit_name" value="<?=$produit['name'] ?>">
