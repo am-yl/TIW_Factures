@@ -110,3 +110,30 @@ function edit_produit (int $id, string $name, float $tva, float $prix, string $u
         ':unite' => $unite
     ]);
 }
+
+// FACTURES
+
+function create_facture (int $cid, string $name) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('INSERT INTO factures (client_id, name) VALUES (:cid, :name)');
+    $request->execute([
+        ':cid' => $cid,
+        ':name' => $name
+    ]);
+}
+
+function get_all_factures() {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM factures');
+    $request->execute();
+    return $request->fetchAll();
+}
+
+function get_factures(int $cid) {
+    $bdd = bdd_connect();
+    $request = $bdd->prepare('SELECT * FROM factures WHERE client_id = :cid');
+    $request->execute([
+        ':cid' => $cid
+    ]);
+    return $request->fetchAll();
+}

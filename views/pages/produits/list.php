@@ -42,7 +42,6 @@
             </thead>
             <tbody>
                 <?php
-                    $produits = get_all_produits();
                     foreach($produits as $produit) :
                 ?>
                 <tr>

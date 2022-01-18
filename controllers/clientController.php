@@ -26,9 +26,10 @@ switch ($_GET['action']) {
 
     case 'view':
         if (!empty($_GET['cid'])) {
+            $factures=get_factures($_GET['cid']);
             $client = get_client($_GET['cid']);
             if (!empty($client)) {
-                print_view('clients/single', ['client' => $client]);
+                print_view('clients/single', ['client' => $client, 'factures'=>$factures]);
             die;
             }
         }

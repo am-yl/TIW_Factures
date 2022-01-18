@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/?data=produit&action=list">Produits</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/?data=facture&action=list">Factures</a>
+                        </li>
                     </ul>
                 </div>
             </div>

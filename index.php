@@ -20,7 +20,7 @@ if (empty($_GET)) {
             break;
 
         case 'facture' : 
-            print_view('404');
+            include 'controllers/factureController.php';
             break;
 
         default :
