@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <form method="POST" class="pb-4" action="/?data=facture&action=add">
-            <h2>Ajouter une facture</h2>
+            <h2>Créer une facture</h2>
             <div class="form-group py-2">
                 <label class="form-label" for="nom-facture">Nom de la facture </label>
                 <input class="form-control" type="text" id="nom-facture" name="nom-facture" placeholder="Inscrivez le nom de la facture" required>
