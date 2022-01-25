@@ -46,7 +46,7 @@ switch ($_GET['action']) {
                 edit_facture($_POST['fid'],$_POST['nom-facture']);
                 header('Location: /?data=facture&action=view&fid='.$_POST['fid'], true, 301);
             } else {
-                die('L\'identifiant factire est obligatoire !');
+                die('Toutes les données ne sont pas valides !');
             }
             break;
 
@@ -62,7 +62,7 @@ switch ($_GET['action']) {
             }
             header('Location: /?data=facture&action=view&fid='.$_POST['fid'], true, 301); 
         } else {
-            die('Remplissez le formulaire !');
+            die('Toutes les données ne sont pas valides !');
         }
     break;
 
@@ -72,7 +72,7 @@ switch ($_GET['action']) {
             header('Location: /?data=facture&action=view&fid='.$_GET['fid'], true, 301); 
             
         } else {
-            die('L\'identifiant client est obligatoire !');
+            die('Toutes les données ne sont pas valides !');
         }
         break;
 
